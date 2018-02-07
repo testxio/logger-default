@@ -1,4 +1,5 @@
 const colors = require("colors");
+const yaml = require("js-yaml");
 
 const startScriptLogLine = source => `\
 
@@ -31,13 +32,11 @@ const logScriptStart = script => {
 var logStepStart = function(step, context) {
   const fullName = step.meta["Full name"].cyan;
   const row = colors.yellow(`row ${step.meta.Row}`);
-  console.log(`Executing step ${fullName} on ${row} with arguments:`);
-
-  const result = [];
-  for (let k in step.arguments) {
-    const v = step.arguments[k];
-    result.push(
-      console.log(colors.grey(`  ${k}: ${JSON.stringify(v, null, 4)}`))
-    );
+  if (Object.keys(step.arguments).length) {
+    console.log(`Executing step ${fullName} on ${row} with arguments:`);
+    const opts = { noRefs: true, noCompatMode: true };
+    console.log(colors.grey(yaml.safeDump(step.arguments)));
+  } else {
+    console.log(`Executing step ${fullName} on ${row}.\n`);
   }
 };
