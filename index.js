@@ -16,7 +16,7 @@ const printable = (obj, delimiter = ", ") =>
     .map(([k, v]) => `${k}: '${v}'`)
     .join(delimiter);
 
-module.exports = function (eventEmitter, showArgs = false) {
+module.exports = function (eventEmitter, showArgs = true) {
   showArgsVar = showArgs;
 
   eventEmitter.on("script/start", logScriptStart);
