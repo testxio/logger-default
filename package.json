@@ -14,7 +14,7 @@
   "author": "Gresyarch BV",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.1.2",
-    "js-yaml": "^3.10.0"
+    "colors": "^1.4.0",
+    "js-yaml": "^3.13.1"
   }
 }
